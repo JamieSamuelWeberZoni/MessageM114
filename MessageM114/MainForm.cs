@@ -9,6 +9,7 @@ namespace MessageM114
 {
     public partial class MainForm : Form
     {
+
         public MainForm()
         {
             InitializeComponent();
@@ -16,6 +17,9 @@ namespace MessageM114
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+
+           ReceiveForm receiveForm = new ReceiveForm();
+           receiveForm.ShowDialog();
 
         }
     }
