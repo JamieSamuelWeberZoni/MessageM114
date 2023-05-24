@@ -28,9 +28,14 @@ namespace MessageM114
             
             InitializeComponent();
 
-            receive.createIPEndpoint();
+        }
 
-            receive.listener();
+        private async void ReceiveForm_Load(object sender, EventArgs e)
+        {
+
+            string message = await receive.listener();
+
+            MessageBox.Show(message);
 
         }
     }

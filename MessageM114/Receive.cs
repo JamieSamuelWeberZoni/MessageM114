@@ -12,24 +12,12 @@ namespace MessageM114
     internal class Receive
     {
 
-        IPEndPoint iPEndPoint;
-
-        public async void createIPEndpoint()
-        {
-
-            if(iPEndPoint != null)
-            {
-
-                iPEndPoint = new(IPAddress.Any, 15245);
-
-            }
-
-        }
+        IPEndPoint iPEndPoint = new (IPAddress.Any, 12345);
 
         public async Task<string> listener()
         {
 
-            TcpListener listener = new(iPEndPoint);
+            TcpListener listener = new TcpListener(iPEndPoint);
 
             try
             {
@@ -37,7 +25,6 @@ namespace MessageM114
                 listener.Start();
 
                 using TcpClient handler = await listener.AcceptTcpClientAsync();
-                await handler.ConnectAsync(iPEndPoint);
                 await using NetworkStream stream = handler.GetStream();
 
                 byte[] buffer = new byte[10000];
