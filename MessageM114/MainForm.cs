@@ -9,14 +9,17 @@ namespace MessageM114
 {
     public partial class MainForm : Form
     {
+        SenderForm senderForm;
+
         public MainForm()
         {
             InitializeComponent();
+            senderForm = new SenderForm();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            senderForm.Show();
         }
     }
 }

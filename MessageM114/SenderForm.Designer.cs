@@ -59,6 +59,7 @@
             this.btn_send.TabIndex = 2;
             this.btn_send.Text = "Send";
             this.btn_send.UseVisualStyleBackColor = true;
+            this.btn_send.Click += new System.EventHandler(this.btn_send_Click);
             // 
             // tbx_ip
             // 
