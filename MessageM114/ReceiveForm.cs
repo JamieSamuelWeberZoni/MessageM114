@@ -20,9 +20,18 @@ namespace MessageM114
 {
     public partial class ReceiveForm : Form
     {
+
+        Receive receive = new Receive();
+
         public ReceiveForm()
         {
+            
             InitializeComponent();
+
+            receive.createIPEndpoint();
+
+            receive.listener();
+
         }
     }
 }

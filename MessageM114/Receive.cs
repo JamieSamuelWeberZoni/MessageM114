@@ -14,22 +14,19 @@ namespace MessageM114
 
         IPEndPoint iPEndPoint;
 
-        public async void creatIPEndpoint(string ip)
+        public async void createIPEndpoint()
         {
 
             if(iPEndPoint != null)
             {
 
-                IPHostEntry iPHostInfo = await Dns.GetHostEntryAsync(ip);
-                IPAddress iPAdress = iPHostInfo.AddressList[0];
-
-                iPEndPoint = new (iPAdress, 15245);
+                iPEndPoint = new(IPAddress.Any, 15245);
 
             }
 
         }
 
-        public async Task<string> creatTcpListener()
+        public async Task<string> listener()
         {
 
             TcpListener listener = new(iPEndPoint);
