@@ -220,9 +220,9 @@ namespace MessageM114
             {
                 msg[i + 4] = ssrcByte[i];
             }
-            for (int i = 0; i < msg.Length; i++)
+            for (int i = 0; i < emsg.Length; i++)
             {
-                msg[i + 8] = msg[i];
+                msg[i + 8] = emsg[i];
             }
             await stream.WriteAsync(msg, 0, message.Length);
             sequence++;
