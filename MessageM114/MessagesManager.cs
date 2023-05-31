@@ -128,6 +128,30 @@ namespace MessageM114
             }
         }
 
-
+        /// <summary>
+        /// Verify that the ip is in the correct format
+        /// </summary>
+        /// <param name="ip">The ip to verify</param>
+        /// <returns>True if in the correct format, false if not</returns>
+        public bool VerifyIp(string ip)
+        {
+            try
+            {
+                string[] ipArray = ip.Split('.');
+                if (ipArray.Length != 4)
+                {
+                    return false;
+                }
+                for (int i = 0; i < 4; i++)
+                {
+                    Convert.ToByte(ipArray[i]);
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
