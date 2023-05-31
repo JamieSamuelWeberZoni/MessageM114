@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 /**
  * Project      : Message M114
- * File         : SenderForm.cs
- * Description  : A programm that receives and send encrypted messages, this is the form to send messages
+ * File         : MainForm.cs
+ * Description  : A programm that receives and send encrypted messages, this is the form to connect to the other user and send and read messages
  * Authors      : Ballanfat Jeremy, Weber Jamie
  * Date         : 24 May 2023
 **/

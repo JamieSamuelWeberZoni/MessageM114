@@ -18,12 +18,39 @@ namespace MessageM114
 {
     internal class MessagesManager
     {
+        /// <summary>
+        /// The end point to the other user
+        /// </summary>
         private IPEndPoint endPoint = new(IPAddress.Any, 12345);
+
+        /// <summary>
+        /// The nonce of for encrypting
+        /// </summary>
         private byte[] nonce = SecretBox.GenerateNonce();
+
+        /// <summary>
+        /// The key for encrypting
+        /// </summary>
         private byte[] key = SecretBox.GenerateKey();
+
+        /// <summary>
+        /// The number of the sequence of messages
+        /// </summary>
         private int sequence = 0;
+
+        /// <summary>
+        /// The ssrc of the messages
+        /// </summary>
         private int ssrc = new Random().Next();
+
+        /// <summary>
+        /// The connection to the other user
+        /// </summary>
         private TcpClient client = new TcpClient();
+
+        /// <summary>
+        /// The stream of data to the other user
+        /// </summary>
         private NetworkStream stream;
 
         /// <summary>
