@@ -111,9 +111,9 @@ namespace MessageM114
         /// </summary>
         /// <param name="sender">The object that send the event</param>
         /// <param name="e">The event</param>
-        private void ButtonSend_Click(object sender, EventArgs e)
+        private async void ButtonSend_Click(object sender, EventArgs e)
         {
-
+            await manager.SendMessage(TextboxMsg.Text);
         }
     }
 }

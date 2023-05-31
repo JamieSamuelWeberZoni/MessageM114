@@ -36,7 +36,7 @@ namespace MessageM114
         /// <summary>
         /// The number of the sequence of messages
         /// </summary>
-        private int sequence = 0;
+        private int sequence = 1;
 
         /// <summary>
         /// The ssrc of the messages
@@ -87,6 +87,7 @@ namespace MessageM114
                 string msg = Encoding.UTF8.GetString(message, 0, length);
                 if (msg == "ok")
                 {
+                    ReceiveMessage();
                     return true;
                 }
                 else
@@ -146,6 +147,7 @@ namespace MessageM114
                 string msg = "ok";
                 message = Encoding.UTF8.GetBytes(msg);
                 await stream.WriteAsync(message, 0, message.Length);
+                ReceiveMessage();
                 return true;
             }
             catch
@@ -181,6 +183,85 @@ namespace MessageM114
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Wait to receive a message
+        /// </summary>
+        private async Task ReceiveMessage()
+        {
+            while(true)
+            {
+                byte[] msg = new byte[10000];
+                int length = await stream.ReadAsync(msg);
+                sequence = BitConverter.ToInt32(msg, 0);
+                int essrc = BitConverter.ToInt32(msg, 4);
+                if (essrc != ssrc)
+                {
+                    continue;
+                }
+                string message = Encoding.UTF8.GetString(msg, 8, length - 8);
+                MessageBox.Show(DecryptMessage(message), "Message n." + sequence);
+                sequence++;
+            }
+        }
+
+        public async Task SendMessage(string message)
+        {
+            byte[] emsg = Encoding.UTF8.GetBytes(message);
+            byte[] msg = new byte[8 + emsg.Length];
+            byte[] seqByte = BitConverter.GetBytes(sequence);
+            byte[] ssrcByte = BitConverter.GetBytes(ssrc);
+            for (int i = 0; i < seqByte.Length; i++)
+            {
+                msg[i] = seqByte[i];
+            }
+            for (int i = 0; i < ssrcByte.Length; i++)
+            {
+                msg[i + 4] = ssrcByte[i];
+            }
+            for (int i = 0; i < msg.Length; i++)
+            {
+                msg[i + 8] = msg[i];
+            }
+            await stream.WriteAsync(msg, 0, message.Length);
+            sequence++;
+        }
+
+        /// <summary>
+        /// Encrypt a given message
+        /// </summary>
+        /// <param name="message">The message to encrypt</param>
+        /// <returns>The crypted message</returns>
+        public string EncryptMessage(string message)
+        {
+            byte[] enMessage = SecretBox.Create(message, nonce, key);
+            return BitConverter.ToString(enMessage);
+        }
+
+        /// <summary>
+        /// Decrypt a given message
+        /// </summary>
+        /// <param name="message">The crypted message</param>
+        /// <returns>The decrypted message</returns>
+        public string DecryptMessage(string message)
+        {
+            string[] nbrs = message.Split('-');
+            byte[] enMessage = new byte[nbrs.Length];
+            int i = 0;
+            foreach (string nbrHex in nbrs)
+            {
+                int nbr = int.Parse(nbrHex, System.Globalization.NumberStyles.HexNumber);
+                enMessage[i] = Convert.ToByte(nbr);
+                i++;
+            }
+            byte[] deMessage = SecretBox.Open(enMessage, nonce, key);
+            string deMessageStr = "";
+            foreach (byte charAscii in deMessage)
+            {
+                deMessageStr += Convert.ToChar(charAscii);
+            }
+            return deMessageStr;
         }
     }
 }
