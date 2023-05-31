@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "2lyCetSvnSq06SZJs2J4SVfbCN3cT78teSBs5uTvEVa2jaP/483pAacvETrE+tBWF2IffN9FSVt33/OMzKQQtw==",
+  "dgSpecHash": "GUhdpygPNwgHmDFb3Tx8tk68O3DUPjdN/PhB5FO9yrMZReNNFXPVxmJSQ+6MFhgvcLFjtALE310ZV1bQRptYGg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Jamie.wbr\\Desktop\\Mercredi\\2eme\\M114\\MessageM114\\MessageM114\\MessageM114.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Jamie.wbr\\.nuget\\packages\\libsodium\\1.0.18.4\\libsodium.1.0.18.4.nupkg.sha512",
+    "C:\\Users\\Jamie.wbr\\.nuget\\packages\\sodium.core\\1.3.3\\sodium.core.1.3.3.nupkg.sha512"
+  ],
   "logs": []
 }
