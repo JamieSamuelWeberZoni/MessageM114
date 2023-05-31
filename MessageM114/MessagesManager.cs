@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -23,6 +24,7 @@ namespace MessageM114
         private int sequence = 0;
         private int ssrc = new Random().Next();
         private TcpClient client = new TcpClient();
+        private NetworkStream stream;
 
         /// <summary>
         /// Await an invite from someone and send the infos of incryption and ssrc when invited
@@ -31,12 +33,13 @@ namespace MessageM114
         public async Task<bool> AwaitInvite()
         {
             endPoint = new(IPAddress.Any, 12345);
+            Debug.WriteLine("MessagesManager::AwaitInvite   -  endPoint={0}", endPoint);
             TcpListener listener = new TcpListener(endPoint);
             try
             {
                 listener.Start();
                 client = await listener.AcceptTcpClientAsync();
-                await using NetworkStream stream = client.GetStream();
+                stream = client.GetStream();
                 byte[] ssrcByte = BitConverter.GetBytes(ssrc);
                 byte[] message = new byte[60];
                 for(int i = 0; i < nonce.Length; i++)
@@ -77,9 +80,9 @@ namespace MessageM114
         /// <returns>Whether there is a connection to someone</returns>
         public async Task<bool> SendInvite(string ip)
         {
+            Debug.WriteLine("MessagesManager::SendInvite   -  ip={0}", ip);
             int length = 0;
             byte[] message = new byte[1000];
-            NetworkStream stream = null;
             try
             {
                 byte[] ipBytes = new byte[4];
@@ -91,17 +94,17 @@ namespace MessageM114
                 IPAddress address = new IPAddress(ipBytes);
                 endPoint = new IPEndPoint(address, 12345);
                 await client.ConnectAsync(endPoint);
-                await using NetworkStream st = client.GetStream();
-                stream = st;
+                stream = client.GetStream();
                 length = await stream.ReadAsync(message);
+                Debug.WriteLine("MessagesManager::SendInvite   -  ReadAsync    message={0}    length={1}", message, length);
             }
             catch
             {
+                Debug.WriteLine("MessagesManager::SendInvite   -  exception =");
                 return false;
             }
             try
             {
-                
                 nonce = new byte[24];
                 key = new byte[32];
                 for (int i = 0; i < 24; i++)
@@ -120,7 +123,6 @@ namespace MessageM114
             }
             catch
             {
-
                 string msg = "nok";
                 message = Encoding.UTF8.GetBytes(msg);
                 await stream.WriteAsync(message, 0, message.Length);
