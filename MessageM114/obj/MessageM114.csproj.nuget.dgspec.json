@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jeremy.bllnf\\Desktop\\2-anne\\cours-mercredi\\M114\\MessageM114\\MessageM114\\MessageM114.csproj": {}
+    "C:\\Users\\Jamie.wbr\\Desktop\\Mercredi\\2eme\\M114\\MessageM114\\MessageM114\\MessageM114.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jeremy.bllnf\\Desktop\\2-anne\\cours-mercredi\\M114\\MessageM114\\MessageM114\\MessageM114.csproj": {
+    "C:\\Users\\Jamie.wbr\\Desktop\\Mercredi\\2eme\\M114\\MessageM114\\MessageM114\\MessageM114.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jeremy.bllnf\\Desktop\\2-anne\\cours-mercredi\\M114\\MessageM114\\MessageM114\\MessageM114.csproj",
+        "projectUniqueName": "C:\\Users\\Jamie.wbr\\Desktop\\Mercredi\\2eme\\M114\\MessageM114\\MessageM114\\MessageM114.csproj",
         "projectName": "MessageM114",
-        "projectPath": "C:\\Users\\jeremy.bllnf\\Desktop\\2-anne\\cours-mercredi\\M114\\MessageM114\\MessageM114\\MessageM114.csproj",
-        "packagesPath": "C:\\Users\\jeremy.bllnf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jeremy.bllnf\\Desktop\\2-anne\\cours-mercredi\\M114\\MessageM114\\MessageM114\\obj\\",
+        "projectPath": "C:\\Users\\Jamie.wbr\\Desktop\\Mercredi\\2eme\\M114\\MessageM114\\MessageM114\\MessageM114.csproj",
+        "packagesPath": "C:\\Users\\Jamie.wbr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jamie.wbr\\Desktop\\Mercredi\\2eme\\M114\\MessageM114\\MessageM114\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jeremy.bllnf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jamie.wbr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,7 +58,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
