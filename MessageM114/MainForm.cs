@@ -28,6 +28,13 @@ namespace MessageM114
             manager = new MessagesManager();
         }
 
+        /// <summary>
+        /// When pressing the Send Invite button, disable all the controls, verify if the ip is correct, attempt to connect, 
+        /// if it passes, enable the message controls and wait for a response
+        /// if not, enable the connect controls
+        /// </summary>
+        /// <param name="sender">The object that send the event</param>
+        /// <param name="e">The event</param>
         private async void ButtonInvite_Click(object sender, EventArgs e)
         {
             TextboxIp.Enabled = false;
@@ -39,6 +46,8 @@ namespace MessageM114
                 if (isOk)
                 {
                     MessageBox.Show("Connection successfully created");
+                    TextboxMsg.Enabled = true;
+                    ButtonSend.Enabled = true;
                 }
                 else
                 {
@@ -57,6 +66,13 @@ namespace MessageM114
             }
         }
 
+        /// <summary>
+        /// When pressing the Wait Invite button, disable all the controls, wait for an invite
+        /// if it passes, enable the message controls and wait for a response
+        /// if not, enable the connect controls
+        /// </summary>
+        /// <param name="sender">The object that send the event</param>
+        /// <param name="e">The event</param>
         private async void ButtonWait_Click(object sender, EventArgs e)
         {
             TextboxIp.Enabled = false;
@@ -67,6 +83,8 @@ namespace MessageM114
             if (isOk)
             {
                 MessageBox.Show("Connection successfully created");
+                TextboxMsg.Enabled = true;
+                ButtonSend.Enabled = true;
             }
             else
             {
@@ -77,12 +95,22 @@ namespace MessageM114
             }
         }
 
+        /// <summary>
+        /// Disable the messages controls
+        /// </summary>
+        /// <param name="sender">The object that send the event</param>
+        /// <param name="e">The event</param>
         private void MainForm_Load(object sender, EventArgs e)
         {
             TextboxMsg.Enabled = false;
             ButtonSend.Enabled = false;
         }
 
+        /// <summary>
+        /// Send a message to the user
+        /// </summary>
+        /// <param name="sender">The object that send the event</param>
+        /// <param name="e">The event</param>
         private void ButtonSend_Click(object sender, EventArgs e)
         {
 
