@@ -12,7 +12,7 @@ using System.Windows.Forms;
  * File         : MainForm.cs
  * Description  : A programm that receives and send encrypted messages, this is the form to connect to the other user and send and read messages
  * Authors      : Ballanfat Jeremy, Weber Jamie
- * Date         : 24 May 2023
+ * Date         : 24 May 2023 - 8 June 2023
 **/
 namespace MessageM114
 {
@@ -114,6 +114,7 @@ namespace MessageM114
         private async void ButtonSend_Click(object sender, EventArgs e)
         {
             await manager.SendMessage(TextboxMsg.Text);
+            TextboxMsg.Text = "";
         }
     }
 }

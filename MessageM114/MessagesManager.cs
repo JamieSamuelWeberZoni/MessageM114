@@ -12,7 +12,7 @@ using Sodium;
  * File         : MessagesManager.cs
  * Description  : A programm that receives and send encrypted messages, this is the manager of the messages we send and receive and the encryption of said messages
  * Authors      : Ballanfat Jeremy, Weber Jamie
- * Date         : 24 May 2023
+ * Date         : 24 May 2023 - 8 June 2023
 **/
 namespace MessageM114
 {
