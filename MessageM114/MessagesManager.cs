@@ -194,7 +194,6 @@ namespace MessageM114
             {
                 byte[] msg = new byte[10000];
                 int length = await stream.ReadAsync(msg);
-                Debug.WriteLine("message ok");
                 int essrc = BitConverter.ToInt32(msg, 4);
                 if (essrc != ssrc)
                 {
@@ -209,7 +208,7 @@ namespace MessageM114
 
         public async Task SendMessage(string message)
         {
-            byte[] emsg = Encoding.UTF8.GetBytes(message);
+            byte[] emsg = Encoding.UTF8.GetBytes(EncryptMessage(message));
             byte[] msg = new byte[8 + emsg.Length];
             byte[] seqByte = BitConverter.GetBytes(sequence);
             byte[] ssrcByte = BitConverter.GetBytes(ssrc);
