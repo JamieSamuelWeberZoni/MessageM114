@@ -194,12 +194,13 @@ namespace MessageM114
             {
                 byte[] msg = new byte[10000];
                 int length = await stream.ReadAsync(msg);
-                sequence = BitConverter.ToInt32(msg, 0);
+                Debug.WriteLine("message ok");
                 int essrc = BitConverter.ToInt32(msg, 4);
                 if (essrc != ssrc)
                 {
                     continue;
                 }
+                sequence = BitConverter.ToInt32(msg, 0);
                 string message = Encoding.UTF8.GetString(msg, 8, length - 8);
                 MessageBox.Show(DecryptMessage(message), "Message n." + sequence);
                 sequence++;
@@ -224,7 +225,7 @@ namespace MessageM114
             {
                 msg[i + 8] = emsg[i];
             }
-            await stream.WriteAsync(msg, 0, message.Length);
+            await stream.WriteAsync(msg, 0, msg.Length);
             sequence++;
         }
 
